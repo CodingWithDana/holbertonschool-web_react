@@ -1,54 +1,31 @@
-// Interfaces
-export interface DirectorInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workDirectorTasks(): string;
+// Interfaces with branding
+export interface MajorCredits {
+    credits: number;
+    brand: 'MajorCredits';
 }
 
-export interface TeacherInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workTeacherTasks(): string;
+export interface MinorCredits {
+    credits: number;
+    brand: 'MinorCredits';
 }
 
-// Classes
-export class Director implements DirectorInterface {
-  workFromHome(): string {
-    return 'Working from home';
-  }
-
-  getCoffeeBreak(): string {
-    return 'Getting a coffee break';
-  }
-
-  workDirectorTasks(): string {
-    return 'Getting to director tasks';
-  }
+// Functions
+export function sumMajorCredits(
+    subject1: MajorCredits,
+    subject2: MajorCredits
+): MajorCredits {
+    return {
+        credits: subject1.credits + subject2.credits,
+        brand: 'MajorCredits',
+    };
 }
 
-export class Teacher implements TeacherInterface {
-  workFromHome(): string {
-    return 'Cannot work from home';
-  }
-
-  getCoffeeBreak(): string {
-    return 'Cannot have a break';
-  }
-
-  workTeacherTasks(): string {
-    return 'Getting to work';
-  }
+export function sumMinorCredits(
+    subject1: MinorCredits,
+    subject2: MinorCredits
+): MinorCredits {
+    return {
+        credits: subject1.credits + subject2.credits,
+        brand: 'MinorCredits',
+    };
 }
-
-// Function
-export function createEmployee(salary: number | string): Director | Teacher {
-  if (typeof salary === 'number' && salary < 500) {
-    return new Teacher();
-  }
-  return new Director();
-}
-
-// Expected result tests
-console.log(createEmployee(200));     // Teacher
-console.log(createEmployee(1000));    // Director
-console.log(createEmployee('$500'));  // Director
