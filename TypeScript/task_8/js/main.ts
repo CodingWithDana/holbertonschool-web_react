@@ -1,54 +1,19 @@
-// Interfaces
-export interface DirectorInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workDirectorTasks(): string;
-}
+/// <reference path="./crud.d.ts" />
 
-export interface TeacherInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workTeacherTasks(): string;
-}
+import { RowID, RowElement } from './interface';
+import * as CRUD from './crud';
 
-// Classes
-export class Director implements DirectorInterface {
-  workFromHome(): string {
-    return 'Working from home';
-  }
+const row: RowElement = {
+  firstName: 'Guillaume',
+  lastName: 'Salva',
+};
 
-  getCoffeeBreak(): string {
-    return 'Getting a coffee break';
-  }
+const newRowID: RowID = CRUD.insertRow(row);
 
-  workDirectorTasks(): string {
-    return 'Getting to director tasks';
-  }
-}
+const updatedRow: RowElement = {
+  ...row,
+  age: 23,
+};
 
-export class Teacher implements TeacherInterface {
-  workFromHome(): string {
-    return 'Cannot work from home';
-  }
-
-  getCoffeeBreak(): string {
-    return 'Cannot have a break';
-  }
-
-  workTeacherTasks(): string {
-    return 'Getting to work';
-  }
-}
-
-// Function
-export function createEmployee(salary: number | string): Director | Teacher {
-  if (typeof salary === 'number' && salary < 500) {
-    return new Teacher();
-  }
-  return new Director();
-}
-
-// Expected result tests
-console.log(createEmployee(200));     // Teacher
-console.log(createEmployee(1000));    // Director
-console.log(createEmployee('$500'));  // Director
+CRUD.updateRow(newRowID, updatedRow);
+CRUD.deleteRow(newRowID);

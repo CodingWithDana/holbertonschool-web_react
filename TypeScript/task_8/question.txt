@@ -61,3 +61,8 @@ CRUD.updateRow(newRowID, updatedRow);
 CRUD.deleteRow(125);
 // Delete row id 125
 ```
+
+### Important notes:
+  - The crud.d.ts file must import RowID and RowElement from ./interface (requirement)
+  - main.ts also imports those types (requirement)
+  - CRUD.deleteRow(newRowID) matches the “delete row id …” output pattern, except the ID will be whatever random ID was returned
