@@ -1,9 +1,5 @@
-interface Student {
-    firstName: string,
-    lastName: string,
-    age: number,
-    location: string,
-}
+// DOM + table rendering 
+import { Student } from './Student';
 
 const student1: Student = {
     firstName: "Dana",
